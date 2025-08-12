@@ -2,6 +2,7 @@ const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 const taskCounter = document.getElementById("task-counter");
 const dateTimeEl = document.getElementById("date-time");
+const themeToggleBtn = document.querySelector(".theme-toggle");
 
 function addTask() {
   if (inputBox.value.trim() === "") {
@@ -11,7 +12,7 @@ function addTask() {
 
   let li = document.createElement("li");
   li.textContent = inputBox.value;
-  
+
   let span = document.createElement("span");
   span.innerHTML = "\u00d7";
   li.appendChild(span);
@@ -19,7 +20,7 @@ function addTask() {
   listContainer.appendChild(li);
   inputBox.value = "";
   inputBox.focus();
-  
+
   saveData();
   updateCounter();
 }
@@ -55,8 +56,10 @@ function updateCounter() {
 }
 
 function checkAllCompleted() {
-  let allChecked = listContainer.querySelectorAll("li").length > 0 &&
-                   listContainer.querySelectorAll("li.checked").length === listContainer.querySelectorAll("li").length;
+  let allChecked =
+    listContainer.querySelectorAll("li").length > 0 &&
+    listContainer.querySelectorAll("li.checked").length ===
+      listContainer.querySelectorAll("li").length;
   if (allChecked) {
     confettiEffect();
   }
@@ -66,15 +69,22 @@ function confettiEffect() {
   alert("🎉 All tasks completed! 🎉");
 }
 
-function updateDateTime() {
+// Show only date (no time)
+function updateDate() {
   const now = new Date();
-  dateTimeEl.textContent = now.toLocaleString();
+  dateTimeEl.textContent = now.toLocaleDateString(undefined, {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
-setInterval(updateDateTime, 1000);
+updateDate();
 
 function toggleTheme() {
   document.body.classList.toggle("dark");
+  themeToggleBtn.classList.add("clicked");
+  setTimeout(() => themeToggleBtn.classList.remove("clicked"), 500);
 }
 
 showTask();
-updateDateTime();
