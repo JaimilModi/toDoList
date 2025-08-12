@@ -6,20 +6,27 @@
 }
 
 body {
-  background: linear-gradient(135deg, #89f7fe, #66a6ff);
-  transition: background 0.5s ease;
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee); /* Pastel pink to blue */
+  transition: background 0.5s ease, color 0.5s ease;
+  color: #333;
 }
 
 body.dark {
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Cool dark teal gradient */
+  color: #f5f5f5; /* Light text for readability */
 }
 
 .glass {
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+body.dark .glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .container {
@@ -41,7 +48,7 @@ body.dark {
 .todo-app h2 {
   display: flex;
   align-items: center;
-  color: #fff;
+  color: inherit;
 }
 
 .todo-app h2 img {
@@ -50,17 +57,21 @@ body.dark {
 }
 
 .date-time {
-  color: #fff;
   font-size: 0.9rem;
   margin-bottom: 1rem;
+  opacity: 0.8;
 }
 
 .row {
   display: flex;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 30px;
   padding-left: 1rem;
   margin-bottom: 1rem;
+}
+
+body.dark .row {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 input {
@@ -70,14 +81,14 @@ input {
   background: transparent;
   padding: 10px;
   font-size: 1rem;
-  color: #fff;
+  color: inherit;
 }
 
 button {
   border: none;
   outline: none;
   padding: 0.8rem 2rem;
-  background: #00e5ff;
+  background: #ff758c; /* Pink accent for light mode */
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
@@ -85,9 +96,17 @@ button {
   transition: transform 0.2s ease, background 0.3s;
 }
 
+body.dark button {
+  background: #00bcd4; /* Cyan accent for dark mode */
+}
+
 button:hover {
-  background: #00b8d4;
   transform: scale(1.05);
+  background: #ff4e6b;
+}
+
+body.dark button:hover {
+  background: #0097a7;
 }
 
 ul li {
@@ -96,7 +115,7 @@ ul li {
   padding: 0.75rem 0.5rem 0.75rem 3rem;
   cursor: pointer;
   position: relative;
-  color: #fff;
+  color: inherit;
   margin: 5px 0;
   border-radius: 10px;
   animation: slideIn 0.4s ease forwards;
@@ -115,7 +134,7 @@ ul li::before {
 
 ul li.checked {
   text-decoration: line-through;
-  color: #c8c8c8;
+  opacity: 0.7;
 }
 
 ul li.checked::before {
@@ -143,7 +162,6 @@ ul li span:hover {
 }
 
 .task-counter {
-  color: #fff;
   margin-bottom: 1rem;
 }
 
@@ -151,11 +169,45 @@ ul li span:hover {
   position: fixed;
   top: 15px;
   right: 15px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.3);
   padding: 10px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.2rem;
+}
+
+body.dark .theme-toggle {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .todo-app {
+    padding: 1.5rem;
+  }
+  button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  ul li {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .todo-app {
+    padding: 1rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  input {
+    font-size: 0.9rem;
+  }
+  button {
+    width: 100%;
+    padding: 0.6rem;
+  }
 }
 
 @keyframes fadeIn {
