@@ -4,28 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="IewFE34Z3RFDSMzKNeG_HR6Ogbc9eN4-hj-tse8Y50g" />
-    <title>To-do List</title>
+    <title>Fancy To-do List</title>
     <link rel="icon" type="image/png" href="images/icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+
     <div class="container">
-        <div class="todo-app">
-            <h2>To-Do List <img src="images/icon.png" alt="icon"></h2>
+        <div class="todo-app glass">
+            <h2>My To-Do List <img src="images/icon.png" alt="icon"></h2>
+            <p class="date-time" id="date-time"></p>
             <div class="row">
-                <input type="text" id="input-box" placeholder="Add Your Text">
+                <input type="text" id="input-box" placeholder="Add Your Task">
                 <button onclick="addTask()">Add</button>
             </div>
-            <ul id="list-container">
-                <!-- <li class="checked">Task 1</li>
-                <li>Task 2</li>
-                <li>Task 3</li> -->
-            </ul>
+            <p class="task-counter" id="task-counter">0 tasks pending</p>
+            <ul id="list-container"></ul>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
-
 </html>
